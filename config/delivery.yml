@@ -45,7 +45,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: harbor.ryanbaker.io/tap-apps/spring-sensors-default@sha256:52e4415570068d8425fd945473351e03a032ff65657a7af92f7f5cad2e3c728b
+        image: harbor.ryanbaker.io/tap-apps/spring-sensors-default@sha256:15cc53e65d827ed800a2ed920e3fe7d322510cc6edc5cd3fb7894018f564eb6e
         name: workload
         ports:
         - containerPort: 8080
