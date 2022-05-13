@@ -13,7 +13,7 @@ spec:
     metadata:
       annotations:
         boot.spring.io/actuator: http://:8081/actuator
-        boot.spring.io/version: 2.5.8
+        boot.spring.io/version: 2.5.12
         conventions.apps.tanzu.vmware.com/applied-conventions: |-
           spring-boot-convention/spring-boot
           spring-boot-convention/spring-boot-graceful-shutdown
@@ -25,7 +25,7 @@ spec:
           appliveview-sample/app-live-view-appflavours
           appliveview-sample/app-live-view-systemproperties
         developer.conventions/target-containers: workload
-        services.conventions.apps.tanzu.vmware.com/mysql: mysql-connector-java/8.0.27
+        services.conventions.apps.tanzu.vmware.com/mysql: mysql-connector-java/8.0.28
         services.conventions.apps.tanzu.vmware.com/rabbitmq: amqp-client/5.12.0
       labels:
         app.kubernetes.io/component: run
@@ -45,7 +45,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: harbor.ryanbaker.io/tap-apps/spring-sensors-default@sha256:d40ec46619526bbed5881b02953a74974c467f2586f0a6fe6da6733505f7cfaa
+        image: harbor.ryanbaker.io/tap-apps/spring-sensors-default@sha256:55b290331079360f3a2db4ad6e8200c725dcb0959eb1e6d5ea83e203168d2f01
         name: workload
         ports:
         - containerPort: 8080
