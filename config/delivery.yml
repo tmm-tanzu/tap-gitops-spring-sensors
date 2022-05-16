@@ -13,20 +13,21 @@ spec:
     metadata:
       annotations:
         boot.spring.io/actuator: http://:8081/actuator
-        boot.spring.io/version: 2.5.8
+        boot.spring.io/version: 2.6.7
         conventions.apps.tanzu.vmware.com/applied-conventions: |-
           spring-boot-convention/spring-boot
           spring-boot-convention/spring-boot-graceful-shutdown
           spring-boot-convention/spring-boot-web
           spring-boot-convention/spring-boot-actuator
+          spring-boot-convention/spring-boot-actuator-probes
           spring-boot-convention/service-intent-mysql
           spring-boot-convention/service-intent-rabbitmq
           appliveview-sample/app-live-view-connector
           appliveview-sample/app-live-view-appflavours
           appliveview-sample/app-live-view-systemproperties
         developer.conventions/target-containers: workload
-        services.conventions.apps.tanzu.vmware.com/mysql: mysql-connector-java/8.0.27
-        services.conventions.apps.tanzu.vmware.com/rabbitmq: amqp-client/5.12.0
+        services.conventions.apps.tanzu.vmware.com/mysql: mysql-connector-java/8.0.28
+        services.conventions.apps.tanzu.vmware.com/rabbitmq: amqp-client/5.13.1
       labels:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: spring-sensors
@@ -45,11 +46,21 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: harbor.ryanbaker.io/tap-apps/spring-sensors-default@sha256:f1b7d67a27d3b1937bbe3a199df7d0bdbcd2b2e48656be6b2437ef3ff73ea04e
+        image: harbor.ryanbaker.io/tap-apps/spring-sensors-default@sha256:1ef9439b0413b7df6893cf870429f77bc4efa3bda6df8f62d1ad4d7d92f71a70
+        livenessProbe:
+          httpGet:
+            path: /livez
+            port: 8080
+            scheme: HTTP
         name: workload
         ports:
         - containerPort: 8080
           protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 8080
+            scheme: HTTP
         resources: {}
         securityContext:
           runAsUser: 1000
