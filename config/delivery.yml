@@ -46,7 +46,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: harbor.ryanbaker.io/tap-apps/spring-sensors-default@sha256:47b2d0b19a00a99bdec14dd5dcb86b2288d9c9e4b628781f5a5ef9545ef661cd
+        image: harbor.ryanbaker.io/tap-apps/spring-sensors-default@sha256:8a4ffa5764a6e19e163bc32338454b339002294741174aafa2454c8c671772fc
         livenessProbe:
           httpGet:
             path: /livez
