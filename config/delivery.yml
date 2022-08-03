@@ -22,8 +22,9 @@ spec:
           spring-boot-convention/spring-boot-actuator-probes
           spring-boot-convention/service-intent-mysql
           spring-boot-convention/service-intent-rabbitmq
-          appliveview-sample/app-live-view-connector
-          appliveview-sample/app-live-view-appflavours
+          appliveview-sample/app-live-view-appflavour-check
+          appliveview-sample/app-live-view-connector-boot
+          appliveview-sample/app-live-view-appflavours-boot
           appliveview-sample/app-live-view-systemproperties
         developer.conventions/target-containers: workload
         services.conventions.apps.tanzu.vmware.com/mysql: mysql-connector-java/8.0.28
@@ -46,7 +47,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: harbor.ryanbaker.io/tap-apps/spring-sensors-default@sha256:62aebb02d5e96470799ca43a7f3f76ae21d43bebe8781edc81877363f1a019ad
+        image: harbor.ryanbaker.io/tap-apps/spring-sensors-default@sha256:72feb9b07de619d2ba57d528c8355441155648562feb5bb116c225292fbbf947
         livenessProbe:
           httpGet:
             path: /livez
